@@ -1,0 +1,186 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 34
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+ 
+    namespace "com.blackshell.stingray.tunnel"
+    defaultConfig {
+        minSdkVersion 26
+        externalNativeBuild {
+            cmake {
+                targets "libwg.so", "libwg-quick.so", "libwg-go.so"
+                arguments "-DCMAKE_C_COMPILER_LAUNCHER=/opt/homebrew/bin/ccache",
+                         "-DCMAKE_CXX_COMPILER_LAUNCHER=/opt/homebrew/bin/ccache",
+                         "-DCMAKE_BUILD_TYPE=Release",
+                         "-DCMAKE_C_FLAGS=-O2 -DNDEBUG",
+                         "-DCMAKE_CXX_FLAGS=-O2 -DNDEBUG",
+                         "-DANDROID_STL=c++_shared"
+                arguments += [
+                    "-DCMAKE_C_COMPILER_LAUNCHER=/opt/homebrew/bin/ccache",
+                    "-DCMAKE_CXX_COMPILER_LAUNCHER=/opt/homebrew/bin/ccache",
+                    "-DCMAKE_CACHE_MAJOR_VERSION=1",
+                    "-DCACHE_ENTRIES=${rootProject.buildDir}/cmake-entries.json",
+                    "-DCMAKE_C_COMPILER_CACHE_DIR=${rootProject.buildDir}/cmake-cache",
+                    "-DCMAKE_CXX_COMPILER_CACHE_DIR=${rootProject.buildDir}/cmake-cache"
+                ]
+            }
+        }
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "tools/CMakeLists.txt"
+            version "3.22.1"
+        }
+    }
+    testOptions.unitTests.all {
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
+    buildFeatures {
+        // Enable build config for native build caching
+        buildConfig true
+
+    }
+    buildTypes {
+        configureEach {
+            externalNativeBuild {
+                cmake {
+                    // Moved common cmake arguments here for all build types
+                    arguments "-DGRADLE_USER_HOME=${project.gradle.gradleUserHomeDir}",
+                             "-DCMAKE_BUILD_TYPE=Release",
+                             "-DCMAKE_C_COMPILER_LAUNCHER=/opt/homebrew/bin/ccache",
+                             "-DCMAKE_CXX_COMPILER_LAUNCHER=/opt/homebrew/bin/ccache"
+                    // Added optimization flags
+                    cFlags "-O2", "-DNDEBUG"
+                    cppFlags "-O2", "-DNDEBUG"
+                }
+            }
+        }
+        release {
+            externalNativeBuild {
+                cmake {
+                    arguments "-DANDROID_PACKAGE_NAME=com.blackshell.stingray.debug"
+                }
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            externalNativeBuild {
+                cmake {
+                    arguments "-DANDROID_PACKAGE_NAME=com.blackshell.stingray.debug"
+                }
+            }
+        }
+        development {
+            initWith debug
+            // Add any specific configurations for development if needed
+        }
+        beta {
+            externalNativeBuild {
+                cmake {
+                    arguments "-DANDROID_PACKAGE_NAME=com.blackshell.stingray.debug"
+                }
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        staging {
+            externalNativeBuild {
+                cmake {
+                    arguments "-DANDROID_PACKAGE_NAME=com.blackshell.stingray.staging"
+                }
+            }
+        }
+    }
+
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.collection:collection:1.4.5'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
+}
+tasks.configureEach { task ->
+    if (task.name.contains("externalNativeBuild") && !task.name.contains("Clean")) {
+        task.inputs.property("CCACHE_DIR", System.getenv("CCACHE_DIR") ?: "${System.getProperty("user.home")}/.ccache")
+        task.inputs.property("CCACHE_MAXSIZE", "50G")
+        task.inputs.property("CCACHE_COMPRESS", "1")
+        
+        task.inputs.files(project.fileTree("src/main/cpp") {
+            include "**/*.cpp"
+            include "**/*.c"
+            include "**/*.h"
+            include "**/*.hpp"
+        })
+        task.inputs.files(project.fileTree("src/main/go") {
+            include "**/*.go"
+        })
+        
+        task.doFirst {
+            environment "CCACHE_SLOPPINESS", "time_macros,include_file_mtime,file_macro,pch_defines,modules"
+            environment "CCACHE_BASEDIR", project.rootDir.absolutePath
+            environment "CCACHE_CPP2", "true"
+            environment "CCACHE_HARDLINK", "true"
+            environment "CCACHE_DIRECT", "true"
+        }
+    }
+}
+
+// Modified clean task
+clean.doFirst {
+    // Directories to preserve
+    def preservedDirs = [
+        "${buildDir}/cmake-cache",
+        "${projectDir}/.ccache",
+        "${projectDir}/tools/wireguard-tools",  // Preserve WireGuard tools directory
+        "${projectDir}/.git"
+    ]
+
+    // Delete build directory contents except preserved directories
+    if (buildDir.exists()) {
+        buildDir.eachFile { file ->
+            def shouldPreserve = preservedDirs.any { preserved -> 
+                file.absolutePath.startsWith(preserved)
+            }
+            if (!shouldPreserve) {
+                delete file
+            }
+        }
+    }
+}
+
+// Optional: Add a task to clear ccache explicitly
+tasks.register("clearCCache") {
+    doLast {
+        exec {
+            commandLine("ccache", "-C")
+        }
+    }
+}
