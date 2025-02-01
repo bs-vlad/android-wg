@@ -35,6 +35,8 @@ android {
     externalNativeBuild {
         cmake {
             path "../tools/CMakeLists.txt"
+            cppFlags "-std=c++11"
+            cFlags "-std=c11"
             version "3.22.1"
         }
     }
