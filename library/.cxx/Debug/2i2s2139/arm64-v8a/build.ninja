@@ -278,7 +278,7 @@ build CMakeFiles/libwg-go.so | ${cmake_ninja_workdir}CMakeFiles/libwg-go.so: CUS
 # Custom command for CMakeFiles/elf-cleaner
 
 build CMakeFiles/elf-cleaner | ${cmake_ninja_workdir}CMakeFiles/elf-cleaner: CUSTOM_COMMAND
-  COMMAND = cd /Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/arm64-v8a && cc -O2 -DPACKAGE_NAME=\"elf-cleaner\" -DPACKAGE_VERSION=\"\" -DCOPYRIGHT=\"\" -o /Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/arm64-v8a/elf-cleaner /Users/badbanii/Projects/Android/android-wg/tools/elf-cleaner/arghandling.c /Users/badbanii/Projects/Android/android-wg/tools/elf-cleaner/elf-cleaner.cpp
+  COMMAND = cd /Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/arm64-v8a && clang++ -O2 -std=c++11 -DPACKAGE_NAME=\"elf-cleaner\" -DPACKAGE_VERSION=\"\" -DCOPYRIGHT=\"\" -o /Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/arm64-v8a/elf-cleaner /Users/badbanii/Projects/Android/android-wg/tools/elf-cleaner/arghandling.c /Users/badbanii/Projects/Android/android-wg/tools/elf-cleaner/elf-cleaner.cpp
   DESC = Building elf-cleaner
 
 # =============================================================================
