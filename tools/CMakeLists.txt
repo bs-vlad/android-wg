@@ -32,10 +32,12 @@ add_custom_target(libwg-go.so WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib
 
 # Strip unwanted ELF sections to prevent DT_FLAGS_1 warnings on old Android versions
 file(GLOB ELF_CLEANER_SOURCES elf-cleaner/*.c elf-cleaner/*.cpp)
-add_custom_target(elf-cleaner COMMENT "Building elf-cleaner" VERBATIM COMMAND cc
-        -O2 -DPACKAGE_NAME="elf-cleaner" -DPACKAGE_VERSION="" -DCOPYRIGHT=""
-        -o "${CMAKE_CURRENT_BINARY_DIR}/elf-cleaner" ${ELF_CLEANER_SOURCES}
+add_custom_target(elf-cleaner
+    COMMENT "Building elf-cleaner"
+    VERBATIM
+    COMMAND ${CMAKE_CXX_COMPILER} -O2 -std=c++11 -DPACKAGE_NAME="elf-cleaner" -DPACKAGE_VERSION="" -DCOPYRIGHT="" -o "${CMAKE_CURRENT_BINARY_DIR}/elf-cleaner" ${ELF_CLEANER_SOURCES}
 )
+
 add_custom_command(TARGET libwg.so POST_BUILD VERBATIM COMMAND "${CMAKE_CURRENT_BINARY_DIR}/elf-cleaner"
         --api-level "${ANDROID_NATIVE_API_LEVEL}" "$<TARGET_FILE:libwg.so>")
 add_dependencies(libwg.so elf-cleaner)
