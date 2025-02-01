@@ -19,6 +19,7 @@ android {
         externalNativeBuild {
             cmake {
                 targets "libwg-go.so", "libwg.so", "libwg-quick.so"
+                cppFlags "-std=c++11"
                 arguments("-DGRADLE_USER_HOME=${project.gradle.gradleUserHomeDir}")
              //   arguments "-DANDROID_PACKAGE_NAME=${project.group}"
             }
@@ -35,8 +36,6 @@ android {
     externalNativeBuild {
         cmake {
             path "../tools/CMakeLists.txt"
-            cppFlags "-std=c++11"
-            cFlags "-std=c11"
             version "3.22.1"
         }
     }
