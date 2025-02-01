@@ -1,0 +1,26 @@
+# ninja log v5
+0	283	0	CMakeFiles/elf-cleaner	645beda8d0a75654
+0	283	0	/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/5vf60596/x86_64/CMakeFiles/elf-cleaner	645beda8d0a75654
+283	326	1738409004418899970	CMakeFiles/libwg.so.dir/ndk-compat/compat.c.o	b13b9a681ff01521
+283	311	1738409004404150697	CMakeFiles/libwg-quick.so.dir/ndk-compat/compat.c.o	7b81a3f9397c4eef
+311	365	1738409004458049742	CMakeFiles/libwg.so.dir/wireguard-tools/src/set.c.o	1853c9c45cb45381
+284	332	1738409004422236822	CMakeFiles/libwg.so.dir/wireguard-tools/src/pubkey.c.o	d81186e42cdedb56
+284	353	1738409004445486329	CMakeFiles/libwg.so.dir/wireguard-tools/src/genkey.c.o	2ba378b0999ed123
+502	546	1738409004641164689	/Users/badbanii/Projects/Android/android-wg/library/build/intermediates/cxx/RelWithDebInfo/5vf60596/obj/x86_64/libwg-quick.so	45e4c3b4afb38711
+284	396	1738409004489161028	CMakeFiles/libwg.so.dir/wireguard-tools/src/encoding.c.o	fd6c94b13bd18eab
+283	404	1738409004497653970	CMakeFiles/libwg.so.dir/wireguard-tools/src/config.c.o	1aa0aa9af897fe1f
+396	429	1738409004523232877	CMakeFiles/libwg.so.dir/wireguard-tools/src/wg.c.o	732b0e6164a823f8
+332	471	1738409004564413343	CMakeFiles/libwg.so.dir/wireguard-tools/src/show.c.o	4350197dac6dd796
+0	6	0	clean	ce06f26a793258a8
+0	29	1738409742891294219	build.ninja	b5f9c5d68fd2c3f2
+283	502	1738409004595333380	CMakeFiles/libwg-quick.so.dir/wireguard-tools/src/wg-quick/android.c.o	dca69da89b8e88b1
+353	426	1738409004519752234	CMakeFiles/libwg.so.dir/wireguard-tools/src/showconf.c.o	200036a404bbeaa
+2594	2639	1738409006734533309	/Users/badbanii/Projects/Android/android-wg/library/build/intermediates/cxx/RelWithDebInfo/5vf60596/obj/x86_64/libwg.so	893b6fc86fb00b5f
+284	582	1738409004674682416	CMakeFiles/libwg.so.dir/wireguard-tools/src/ipc.c.o	a344e00ef442d534
+0	5570	0	CMakeFiles/libwg-go.so	44a3052572b6c480
+365	420	1738409004513413069	CMakeFiles/libwg.so.dir/wireguard-tools/src/terminal.c.o	83190f2acd9252d6
+283	2594	1738409006686774387	CMakeFiles/libwg.so.dir/wireguard-tools/src/curve25519.c.o	1118b9117a183cf7
+326	429	1738409004521057350	CMakeFiles/libwg.so.dir/wireguard-tools/src/setconf.c.o	d72ac3d51a8dc0e2
+0	5570	0	/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/5vf60596/x86_64/CMakeFiles/libwg-go.so	44a3052572b6c480
+0	32	1738409742891294219	build.ninja	b5f9c5d68fd2c3f2
+0	4	0	clean	ce06f26a793258a8

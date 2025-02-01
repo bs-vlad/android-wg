@@ -49,27 +49,27 @@ Cursor Rules for WireGuard Android Library Development (Java/Kotlin)
 19. Go Integration: Be prepared to work with and integrate native Go code, which may be used for certain WireGuard implementations. Understand the nuances of bridging Go with Java/Kotlin through JNI or other interop mechanisms.
 
 20. Project Structure:
+ % tree -L 4
 .
+├── build
+│   └── reports
+│       └── problems
+│           └── problems-report.html
 ├── build.gradle
-├── src
-│   ├── main
-│   │   ├── AndroidManifest.xml
-│   │   └── java
-│   │       └── com
-│   └── test
-│       ├── java
-│       │   └── com
-│       └── resources
-│           ├── broken.conf
-│           ├── invalid-key.conf
-│           ├── invalid-number.conf
-│           ├── invalid-value.conf
-│           ├── missing-attribute.conf
-│           ├── missing-section.conf
-│           ├── syntax-error.conf
-│           ├── unknown-attribute.conf
-│           ├── unknown-section.conf
-│           └── working.conf
+├── gradle.properties
+├── jitpack.yml
+├── library
+│   ├── build.gradle
+│   └── src
+│       ├── main
+│       │   ├── AndroidManifest.xml
+│       │   └── java
+│       └── test
+│           ├── java
+│           └── resources
+├── scripts
+│   └── before_install.sh
+├── settings.gradle
 └── tools
     ├── CMakeLists.txt
     ├── elf-cleaner
@@ -178,5 +178,6 @@ Cursor Rules for WireGuard Android Library Development (Java/Kotlin)
             ├── wg-quick
             ├── wg.c
             └── wincompat
-            
+
+
 When providing solutions or advice, always consider these rules and the specific context of the WireGuard Android library. Explain your reasoning, especially for complex or non-obvious decisions related to network protocols, security, or performance optimizations. Always aim to use the most current best practices and features available in Java, Kotlin, and Android development as of September 2024.

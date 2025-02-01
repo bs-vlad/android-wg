@@ -1,0 +1,4 @@
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/5vf60596/armeabi-v7a/CMakeFiles/elf-cleaner
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/5vf60596/armeabi-v7a/CMakeFiles/elf-cleaner.rule
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/5vf60596/armeabi-v7a/CMakeFiles/libwg-go.so
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/5vf60596/armeabi-v7a/CMakeFiles/libwg-go.so.rule

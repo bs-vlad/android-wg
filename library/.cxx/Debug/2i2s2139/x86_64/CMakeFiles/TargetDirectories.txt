@@ -1,0 +1,6 @@
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/x86_64/CMakeFiles/libwg-quick.so.dir
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/x86_64/CMakeFiles/libwg.so.dir
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/x86_64/CMakeFiles/libwg-go.so.dir
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/x86_64/CMakeFiles/elf-cleaner.dir
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/x86_64/CMakeFiles/edit_cache.dir
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/2i2s2139/x86_64/CMakeFiles/rebuild_cache.dir
