@@ -1,0 +1,4 @@
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/363a6s2n/x86_64/CMakeFiles/elf-cleaner
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/363a6s2n/x86_64/CMakeFiles/elf-cleaner.rule
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/363a6s2n/x86_64/CMakeFiles/libwg-go.so
+/Users/badbanii/Projects/Android/android-wg/library/.cxx/Debug/363a6s2n/x86_64/CMakeFiles/libwg-go.so.rule

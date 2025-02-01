@@ -1,0 +1,22 @@
+# ninja log v5
+0	327	0	CMakeFiles/elf-cleaner	aeff6f765c6e15d4
+0	327	0	/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/6g1w165p/x86_64/CMakeFiles/elf-cleaner	aeff6f765c6e15d4
+328	368	1738410634147090278	CMakeFiles/libwg-quick.so.dir/ndk-compat/compat.c.o	648bcb35e088482
+328	368	1738410634147404318	CMakeFiles/libwg.so.dir/ndk-compat/compat.c.o	1614c6d9b8258e48
+329	401	1738410634175442352	CMakeFiles/libwg.so.dir/wireguard-tools/src/pubkey.c.o	9fa535f2b8e9b286
+328	405	1738410634184245990	CMakeFiles/libwg.so.dir/wireguard-tools/src/genkey.c.o	3c6ad8dce277d8d4
+368	415	1738410634193135461	CMakeFiles/libwg.so.dir/wireguard-tools/src/set.c.o	4d5263f78be79180
+328	426	1738410634205872378	CMakeFiles/libwg.so.dir/wireguard-tools/src/encoding.c.o	33bf6a1b8e802181
+368	450	1738410634229361927	CMakeFiles/libwg.so.dir/wireguard-tools/src/setconf.c.o	54b4e4acf371aa16
+415	459	1738410634239362894	CMakeFiles/libwg.so.dir/wireguard-tools/src/terminal.c.o	10aa6a5d5a0e3e53
+406	466	1738410634245225084	CMakeFiles/libwg.so.dir/wireguard-tools/src/showconf.c.o	749dc37e07456d83
+427	467	1738410634246622621	CMakeFiles/libwg.so.dir/wireguard-tools/src/wg.c.o	480e16559889adfa
+328	485	1738410634264534562	CMakeFiles/libwg.so.dir/wireguard-tools/src/config.c.o	c2621dcdfc144484
+402	509	1738410634288151069	CMakeFiles/libwg.so.dir/wireguard-tools/src/show.c.o	242fbba067f248e1
+328	555	1738410634334408210	CMakeFiles/libwg-quick.so.dir/wireguard-tools/src/wg-quick/android.c.o	7600041c04d3cdbb
+555	597	1738410634377845569	/Users/badbanii/Projects/Android/android-wg/library/build/intermediates/cxx/RelWithDebInfo/6g1w165p/obj/x86_64/libwg-quick.so	a442627cf2dec923
+329	666	1738410634445623140	CMakeFiles/libwg.so.dir/wireguard-tools/src/ipc.c.o	69055b4f2797818b
+328	2639	1738410636417120273	CMakeFiles/libwg.so.dir/wireguard-tools/src/curve25519.c.o	8d005da37cbe1003
+2639	2679	1738410636460128383	/Users/badbanii/Projects/Android/android-wg/library/build/intermediates/cxx/RelWithDebInfo/6g1w165p/obj/x86_64/libwg.so	610bdbb20ca044f0
+0	4997	0	CMakeFiles/libwg-go.so	573f5d8b31601ca5
+0	4997	0	/Users/badbanii/Projects/Android/android-wg/library/.cxx/RelWithDebInfo/6g1w165p/x86_64/CMakeFiles/libwg-go.so	573f5d8b31601ca5
