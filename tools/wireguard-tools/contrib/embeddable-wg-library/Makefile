@@ -1,4 +1,4 @@
-CFLAGS += -Wall -std=c++11
+CFLAGS += -Wall
 
 test: test.c wireguard.c wireguard.h
 
