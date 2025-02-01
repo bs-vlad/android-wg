@@ -29,15 +29,15 @@ GO_HASH_linux-amd64 := 1241381b2843fae5a9707eec1f8fb2ef94d827990582c7c7c32f5bdfb
 
 default: $(DESTDIR)/libwg-go.so
 
-$(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL):
-	mkdir -p "$(dir $@)"
+$(BUILDDIR)/golang-cache/$(GO_TARBALL):
+	mkdir -p "$(BUILDDIR)/golang-cache"
 	flock "$@.lock" -c ' \
 	[ -f "$@" ] && exit 0; \
 	curl -o "$@.tmp" "https://dl.google.com/go/$(GO_TARBALL)" && \
 	echo "$(GO_HASH_$(GO_PLATFORM))  $@.tmp" | sha256sum -c && \
 	mv "$@.tmp" "$@"'
 
-$(BUILDDIR)/go-$(GO_VERSION)/.prepared: $(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL)
+$(BUILDDIR)/go-$(GO_VERSION)/.prepared: $(BUILDDIR)/golang-cache/$(GO_TARBALL)
 	mkdir -p "$(dir $@)"
 	flock "$@.lock" -c ' \
 	[ -f "$@" ] && exit 0; \
