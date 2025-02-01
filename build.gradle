@@ -1,94 +1,25 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
-android {
-    compileSdkVersion 34
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+// Top-level build configuration
+buildscript {
+    ext {
+        kotlin_version = '1.9.22'
+        agp_version = '8.3.0' // Updated to latest stable
     }
-
-    // Your app’s namespace remains unchanged.
-    namespace "com.blackshell.stingray.tunnel"
-
-    defaultConfig {
-        // You can keep your minSdkVersion (or change it as required)
-        minSdkVersion 26
-
-        // Define native build settings for the targets you need.
-        externalNativeBuild {
-            cmake {
-                targets "libwg-go.so", "libwg.so", "libwg-quick.so"
-            }
-        }
+    repositories {
+        google()
+        mavenCentral()
     }
-
-    // Point to your CMakeLists.txt file.
-    externalNativeBuild {
-        cmake {
-            path "tools/CMakeLists.txt"
-        }
-    }
-
-   /* testOptions {
-        unitTests.all {
-            testLogging {
-                events "passed", "skipped", "failed"
-            }
-        }
-    }
-    */
-
-    buildTypes {
-        // This common configuration is applied to all build types.
-        all {
-            externalNativeBuild {
-                cmake {
-                    // Pass the Gradle user home directory to CMake.
-                    arguments "-DGRADLE_USER_HOME=" + project.gradle.gradleUserHomeDir
-                }
-            }
-        }
-        debug {
-            externalNativeBuild {
-                cmake {
-                    // Use a package name variant for debug builds.
-                    arguments "-DANDROID_PACKAGE_NAME=com.blackshell.stingray.debug"
-                }
-            }
-        }
-        release {
-            externalNativeBuild {
-                cmake {
-                    // Use your main package name for release builds.
-                    arguments "-DANDROID_PACKAGE_NAME=com.blackshell.stingray"
-                }
-            }
-            // Adjust ProGuard settings as needed.
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    // Set Kotlin JVM target to 17.
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
-    // Configure JNI libraries location.
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agp_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-dependencies {
-    implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.collection:collection:1.4.5'
-    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
-    testImplementation 'junit:junit:4.13.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
+// Top-level build file where you can add configuration options common to all sub-projects/modules
+plugins {
+    id 'com.android.library' version "$agp_version" apply false
+    id 'org.jetbrains.kotlin.android' version "$kotlin_version" apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
